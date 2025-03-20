@@ -56,6 +56,7 @@ server/src/main/resources/application.properties
 server/src/main/resources/application.yml
 server/src/main/resources/application.yaml
 server/src/main/resources/*.json
+server/src/main/resources/megalab-374718-d69bd6d79a7b.json  # <-- Your specific file
 
 # Ignore build tools cache
 server/.gradle/
