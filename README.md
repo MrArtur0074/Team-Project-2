@@ -30,6 +30,8 @@ VitaFund is a web application designed to address the shortage of blood donors i
   - Canva
 - **UX/UI**:
   - Figma
+- **BD news**:
+  - acces key you may have from me (tg:@tophzxc)
 
 ## How to Run the Project Locally
 
