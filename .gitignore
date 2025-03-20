@@ -1,0 +1,61 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build output
+/build/
+/dist/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDEs
+.idea/
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.db
+
+# Spring Boot
+target/
+
+# Log files
+*.log
+
+# Dependency directories
+/.mvn/
+mvnw
+mvnw.cmd
+
+# IntelliJ IDEA
+*.iml
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# Gradle
+.gradle/
+build/
+
+# Spring Boot Maven wrapper
+spring-boot-loader/
+
+# JetBrains
+*.iws
+*.iml
+*.ipr

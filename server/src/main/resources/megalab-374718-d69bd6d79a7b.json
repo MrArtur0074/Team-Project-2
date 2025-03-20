@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "megalab-374718",
+  "private_key_id": "d69bd6d79a7bfbb437c0f2d6e8d412b080aa6a2c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCoZDqfOgO1+6tL\n/4M9o4mkCUgHTaYsFwhEEhYdFWPAY9N+8BYFxSvNebVKk4nDnNvmLQs461i5Hzik\n5YoSKkxIr0P5dQB0m4DoX1jfIZ7vCLaf3rYRjMyDIOwIZSHnDKcJ06b8DriZTU8J\nyMjl0nHqOVgA/k4Vq5X4bFOZvvMt2xGGpTcPCmni4qC2I8CASmqAu0dF+hJcvJfR\nSlydZRoWoKEiZ9QzNpO6FAnsKiDAfAkt4XrXsxh1rOfo7lU+TEYoDwJG3Ec2ygcS\nKs8Gh20AT202f0uEVhHxpTYBpFJDAzK2p8rD9zlHWA0Qr5qjlOhs50LXZ9PM2i7y\ngxcG66aPAgMBAAECggEAOb9dpztTCHbNUNvIWzwZOMsCC5cidJ5VdFqrgL/UHKdf\nYXneY44xrl6dwHyGUzIY63/pCFUVcS720v3w8rfUv1xzuDnatSKa+5WvOZ4jDiBz\n2LGcyLn7bMC+kUZ1cPIS2rjd3DUEM3ais11LIB2ieUu/FWAg0Set36rupJwqcz/N\njjxKqpIQWPMocbcvTbdvs6O7JSZj5ojH8+KwO9pwdA71kkcsCEdwuRdY15W0ugWs\njhC7zj1qpfEroLJpDDxB8oqYtsAe4nuZu7Fg7U9rgvZaA6SaRXnoB8Ze86dlFNNc\n/d4+W5gQDT9dLNXZgVB4aqfWdqjiKNAmE1Qe9xaNUQKBgQDg+z1NK5Jvyp3m/cxz\nXdY/5n4jCJ3F85TLy20fC7UFmZcwiNW7K8sl9sqA2QPWL6aBzmTsFmCaobx+McFu\nEqYtV9aMmKZwTnozKQmNARMXacoVE0u6AbDOtENjJlQZDr1TwL56f5PnfiFxSr56\nL1zBofFiYsRf5umP4L06NCCsNwKBgQC/m6OW16vWqLRtTZgXAiRfJUy543j3tl0K\nrJE7FG5RzxDqiw0CJt/oRbT4hQN0reXeFHdDNs/g8X/VtbG353wnv55VM9JtjOu8\n0aQ9pqLyLea7lmLIYI1NhH/aGck0StrnzAPCclrfLuzW13uegpJSPvJDwHMC4sIs\nJVnPQUkcaQKBgFds6f5h7y6n4sJPX7J5BXehXuTIRV8V731eGJJW30pEy/6dPcjV\nFMU06K43JomFzMNma8teSr3sGa5EMXFPp+m413OdIhhENrJIwSBdCYkwn8mezO+E\nFqvMWt9dlpKCKsov/RTnHJd5aQ94Rxp96yKHhqB/1uWZeqthXscOWJ/zAoGBAJ6X\nT9u2PwC5Oj2OD+hbWYd28/6YDLPbOT9wffSMgJMt9C5tUSMK0iEKMTPRxH56wNwD\nzILRh1YEDW7xqFszOkwcCg0zi2QpU6VBT9PHbO9Olr+FRdXcNJiIptn6pdKmcnGR\nJzt2M0ivKlDYofUc1cdFWnhBffBRh63KbH9i5gShAoGAcjl8xJzkKvKB/X2l98/P\nPEka1fuJ3jvhK2tfCTiJA2UcdiU2SA2LpHncSMfUEuYj6NDi3qL87lbkFmz5DZlb\ne5B1KXJLCGrsXvNkyl6esH9tbKIfhPbLf6+gUa8Wq1RLRl+Vr0WfYfQtqorl0I+h\n5mkSUAh8vJWZJU4zvoMIuMQ=\n-----END PRIVATE KEY-----\n",
+  "client_email": "megalab-news@megalab-374718.iam.gserviceaccount.com",
+  "client_id": "107545311267289130924",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/megalab-news%40megalab-374718.iam.gserviceaccount.com"
+}
