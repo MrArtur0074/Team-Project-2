@@ -1,62 +1,80 @@
-# Node.js
-node_modules/
-npm-debug.log
-yarn-error.log
-
-# Build output
-/build/
-/dist/
-
-# Environment files
-.env
-.env.local
-.env.*.local
-
-# IDEs
-.idea/
-.vscode/
-
-# macOS
+# Ignore system files
 .DS_Store
-
-# Windows
 Thumbs.db
 
-# Java
-*.class
-*.jar
-*.war
-*.ear
-*.db
+# Ignore Node.js dependencies
+client/node_modules/
+client/.env
+client/.next/
+client/.vercel/
+client/.turbo/
 
-# Spring Boot
-target/
+# Ignore build artifacts
+client/build/
+client/dist/
+client/out/
 
-# Log files
-*.log
+# Ignore logs
+client/npm-debug.log*
+client/yarn-debug.log*
+client/yarn-error.log*
+client/pnpm-debug.log*
 
-# Dependency directories
-/.mvn/
-mvnw
-mvnw.cmd
+# Ignore package manager lock files (if not used)
+client/package-lock.json
+client/yarn.lock
+client/pnpm-lock.yaml
 
-# IntelliJ IDEA
-*.iml
+# Ignore editor/IDE settings
+.vscode/
+.idea/
+*.swp
+*.swo
 
-# Eclipse
-.project
-.classpath
-.settings/
+# Ignore Spring Boot compiled files
+server/target/
+server/out/
+server/logs/
+server/bin/
 
-# Gradle
-.gradle/
-build/
+# Ignore Java dependencies
+server/.mvn/
+server/mvnw
+server/mvnw.cmd
+server/pom.xml.tag
+server/pom.xml.releaseBackup
+server/pom.xml.versionsBackup
+server/pom.xml.next
 
-# Spring Boot Maven wrapper
-spring-boot-loader/
+# Ignore IDE settings for Java
+server/.classpath
+server/.project
+server/.settings/
 
-# JetBrains
-*.iws
-*.iml
-*.ipr
-server/src/main/resources/megalab-374718-d69bd6d79a7b.json
+# Ignore secret configuration files
+server/src/main/resources/application.properties
+server/src/main/resources/application.yml
+server/src/main/resources/application.yaml
+server/src/main/resources/*.json
+
+# Ignore build tools cache
+server/.gradle/
+server/gradle/
+server/gradlew
+server/gradlew.bat
+server/build/
+
+# Ignore logs and temporary files
+server/logs/
+server/*.log
+server/*.tmp
+server/tmp/
+
+# Ignore database files (if using SQLite or H2)
+server/*.db
+server/*.mv.db
+server/*.h2.db
+
+# Ignore JAR/WAR files
+server/*.jar
+server/*.war
