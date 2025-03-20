@@ -59,3 +59,4 @@ spring-boot-loader/
 *.iws
 *.iml
 *.ipr
+server/src/main/resources/megalab-374718-d69bd6d79a7b.json
