@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 import "./Map.css";
 
 L.Icon.Default.imagePath = "https://unpkg.com/leaflet@1.5.0/dist/images/";
@@ -222,8 +222,8 @@ const MapComponent = () => {
 
   const [selected, setSelected] = useState(false);
   const [oneRegion, setOneRegion] = useState("");
-  const [isOpen1, setIsOpen1] = useState(false || true);
-  const [isOpen2, setIsOpen2] = useState(false || true);
+  // const [isOpen1, setIsOpen1] = useState(false || true);
+  const [isOpen2, setIsOpen2] = useState(true);
 
   const getOneRegion = (item) => {
     setSelected(true);
@@ -355,7 +355,7 @@ const MapComponent = () => {
               "
                   aria-label=".form-select-sm example"
                 >
-                  <option value="" disabled selected className="hidden">
+                  <option  value="" disabled selected className="hidden">
                     Регион не выбран
                   </option>
 
