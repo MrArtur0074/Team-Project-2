@@ -1,29 +1,30 @@
 # Ignore system files
 .DS_Store
 Thumbs.db
+client/
 
 # Ignore Node.js dependencies
-client/node_modules/
-client/.env
-client/.next/
-client/.vercel/
-client/.turbo/
+client_vite_vite/node_modules/
+client_vite/.env
+client_vite/.next/
+client_vite/.vercel/
+client_vite/.turbo/
 
 # Ignore build artifacts
-client/build/
-client/dist/
-client/out/
+client_vite/build/
+client_vite/dist/
+client_vite/out/
 
 # Ignore logs
-client/npm-debug.log*
-client/yarn-debug.log*
-client/yarn-error.log*
-client/pnpm-debug.log*
+client_vite/npm-debug.log*
+client_vite/yarn-debug.log*
+client_vite/yarn-error.log*
+client_vite/pnpm-debug.log*
 
 # Ignore package manager lock files (if not used)
-client/package-lock.json
-client/yarn.lock
-client/pnpm-lock.yaml
+client_vite/package-lock.json
+client_vite/yarn.lock
+client_vite/pnpm-lock.yaml
 
 # Ignore editor/IDE settings
 .vscode/
