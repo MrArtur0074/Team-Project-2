@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class ServiceCategoryMapper {
     public ServiceCategory toEntity(ServiceCategoryRequest serviceCategoryRequest,String link){
+        if (serviceCategoryRequest == null) return null;
         return ServiceCategory.builder()
                 .imageUrl(link)
                 .nameOfCategory(serviceCategoryRequest.getNameOfCategory())

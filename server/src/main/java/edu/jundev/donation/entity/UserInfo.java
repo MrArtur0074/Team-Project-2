@@ -2,7 +2,7 @@ package edu.jundev.donation.entity;
 
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Getter
 @Setter
@@ -22,7 +22,7 @@ public class UserInfo {
     @ManyToOne
     private Gender gender;
 
-    @Column(name = "points")
+    @Column(nullable = false)
     private Integer points;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -30,13 +30,9 @@ public class UserInfo {
 
     @OneToOne
     private User user;
-
-    @Column(name = "phone_number")
-    private String phoneNumber;
-
+    private Integer phoneNumber;
     @ManyToOne
     private Region region;
-
-    @Column(name = "amount_of_donations", nullable = false)
+    @Column(nullable = false)
     private Integer amountOfDonations;
 }

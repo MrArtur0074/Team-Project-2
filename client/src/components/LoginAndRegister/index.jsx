@@ -7,9 +7,7 @@ import authpic from "./assets/picauth.svg";
 
 
 function LoginAndRegister() {
-  const [formType, setFormType] = useState<
-    "login" | "register" | "resetPassword"
-  >("login");
+  const [formType, setFormType] = useState("login");
 
   return (
     <>

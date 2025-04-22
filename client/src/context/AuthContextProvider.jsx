@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export const authContext = React.createContext();
 export const useAuth = () => useContext(authContext);
 
-const API = "https://pi.sanarip.org/donation/";
+const API = "http://localhost:8081/";
 
 const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null); // Сохраняем пользователя

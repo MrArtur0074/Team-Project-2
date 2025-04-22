@@ -9,21 +9,17 @@ import lombok.*;
 public class UserInfoDto {
     private Long id;
 
-    private BloodTypeDto bloodType;
+    private BloodTypeDto bloodTypeDto;
 
-    private GenderDto gender;
+    private GenderDto genderDto;
 
     private Integer points;
 
-    private StatusDto status;
+    private StatusDto statusDto;
 
-    private UserDto user;
+    private UserDto userDto;
 
     private Integer amountOfDonations;
-
-    private String phoneNumber;
-
-    private RegionDto region;
-
-    private Integer age;
+    private Integer phoneNumber;
+    private RegionDto regionDto;
 }

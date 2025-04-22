@@ -3,24 +3,25 @@ package edu.jundev.donation.service;
 import edu.jundev.donation.dto.ServiceCategoryDto;
 import edu.jundev.donation.dto.ServiceDto;
 import edu.jundev.donation.dto.requests.ServiceRequest;
-import edu.jundev.donation.entity.Service;
+import edu.jundev.donation.entity.Services;
 import edu.jundev.donation.exception.NotFoundException;
 import edu.jundev.donation.mapper.ServiceMapper;
 import edu.jundev.donation.repository.ServiceRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@org.springframework.stereotype.Service
+@Service
 @RequiredArgsConstructor
 public class ServiceService {
     private final ServiceRepository serviceRepository;
     private final ServiceMapper serviceMapper;
 
     public ServiceDto addService(ServiceRequest serviceRequest){
-        Service service = serviceMapper.toEntity(serviceRequest);
-        Service saved = serviceRepository.save(service);
+        Services services = serviceMapper.toEntity(serviceRequest);
+        Services saved = serviceRepository.save(services);
         return serviceMapper.toDto(saved);
     }
 
@@ -32,9 +33,9 @@ public class ServiceService {
     }
 
     public void deleteServiceById(Long id) throws NotFoundException {
-        Service service = serviceRepository.findById(id)
+        Services services = serviceRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Service with id " + id + " not found!"));
-        serviceRepository.delete(service);
+        serviceRepository.delete(services);
     }
 
     public List<ServiceDto> getServiceByCategory(ServiceCategoryDto serviceCategory){

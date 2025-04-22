@@ -13,11 +13,11 @@ import java.time.LocalDateTime;
 public class DonationDto {
     private Long id;
 
-    private UserDto user;
+    private User user;
 
-    private MedicalCenterDto medicalCenter;
+    private MedicalCenterDto medicalCenterDto;
 
-    private BloodTypeDto bloodType;
+    private BloodTypeDto bloodTypeDto;
 
     private BigDecimal volume;
 

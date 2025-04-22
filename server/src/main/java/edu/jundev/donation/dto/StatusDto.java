@@ -2,7 +2,7 @@ package edu.jundev.donation.dto;
 
 import lombok.*;
 
-import javax.persistence.Column;
+import jakarta.persistence.Column;
 @Getter
 @Setter
 @NoArgsConstructor

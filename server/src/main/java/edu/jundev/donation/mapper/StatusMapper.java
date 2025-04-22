@@ -10,7 +10,7 @@ public class StatusMapper {
         return Status.builder()
                 .points(0)
                 .queueNumber(0)
-                .name("Новый")
+                .name("Новичок")
                 .build();
 
     }

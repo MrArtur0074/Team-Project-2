@@ -2,7 +2,7 @@ package edu.jundev.donation.entity;
 
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Getter
 @Setter
@@ -21,7 +21,6 @@ public class Status {
 
     @Column
     private Integer points;
-
     @Column(name = "queues")
     private Integer queueNumber;
 }

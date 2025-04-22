@@ -3,7 +3,7 @@ package edu.jundev.donation.controller;
 import edu.jundev.donation.dto.ServiceCategoryDto;
 import edu.jundev.donation.dto.ServiceDto;
 import edu.jundev.donation.dto.requests.ServiceRequest;
-import edu.jundev.donation.service.CategoryService;
+import edu.jundev.donation.service.CategotyService;
 import edu.jundev.donation.service.ServiceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +15,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/service")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class ServiceController {
     private final ServiceService serviceService;
-    private final CategoryService categoryService;
+    private final CategotyService categotyService;
 
     @PostMapping("/create")
     public ResponseEntity<ServiceDto> createService(@Valid @RequestBody ServiceRequest serviceRequest){
@@ -37,7 +38,7 @@ public class ServiceController {
 
     @GetMapping("/category/{id}")
     public ResponseEntity<List<ServiceDto>> findServiceByCategory(@PathVariable(name = "id") Long id){
-        ServiceCategoryDto serviceCategory = categoryService.getCategoryById(id);
+        ServiceCategoryDto serviceCategory = categotyService.getCategoryById(id);
         return ResponseEntity.ok(serviceService.getServiceByCategory(serviceCategory));
     }
 }

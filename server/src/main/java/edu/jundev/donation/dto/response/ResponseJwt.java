@@ -1,5 +1,7 @@
 package edu.jundev.donation.dto.response;
 
+import edu.jundev.donation.dto.BloodTypeDto;
+import edu.jundev.donation.dto.GenderDto;
 import lombok.*;
 
 @Getter
@@ -14,6 +16,11 @@ public class ResponseJwt {
 
     private String lastName;
 
+
+    private BloodTypeDto bloodType;
+
+    private GenderDto gender;
+
     private String email;
 
     private String avatarUrl;
@@ -21,6 +28,4 @@ public class ResponseJwt {
     private String token;
 
     private String tokenType;
-
-    private String role;
 }

@@ -3,7 +3,7 @@ package edu.jundev.donation.entity;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -31,10 +31,10 @@ public class Donation {
     @Column(name = "volume", nullable = false)
     private BigDecimal volume;
 
-    @Column(name = "points", nullable = false)
-    private Integer points;
-
     @Column(name = "created_at", updatable = false, nullable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
+    @Column(name = "points", nullable = false)
+    private Integer points;
+
 }

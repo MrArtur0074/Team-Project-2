@@ -7,8 +7,8 @@ import ModalHeading from "../ModalHeading";
 import TextField from "@mui/material/TextField";
 import Button  from "@mui/material/Button";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../../context/AuthContextProvider";
 
+import { useAuth } from "../../../context/AuthContextProvider";
 
 
 function Login({ setFormType }) {

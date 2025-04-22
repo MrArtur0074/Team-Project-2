@@ -1,5 +1,6 @@
 package edu.jundev.donation.dto.requests;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,23 +21,18 @@ public class UserEditRequest {
     private String name;
 
     @NotBlank
-    private String lastName;
+    private String surname;
 
     @NotNull
     private Long genderId;
 
     @NotNull
     private Long bloodTypeId;
-
     @NotNull
-    private String phoneNumber;
-
+    private Integer phoneNumber;
     @NotNull
     private Long  regionId;
-
     @NotNull
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
-
     private MultipartFile avatar;
 }

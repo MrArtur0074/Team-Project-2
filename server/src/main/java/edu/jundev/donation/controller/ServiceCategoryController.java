@@ -2,7 +2,7 @@ package edu.jundev.donation.controller;
 
 import edu.jundev.donation.dto.ServiceCategoryDto;
 import edu.jundev.donation.dto.requests.ServiceCategoryRequest;
-import edu.jundev.donation.service.CategoryService;
+import edu.jundev.donation.service.CategotyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,22 +15,23 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/category")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class ServiceCategoryController {
-    private final CategoryService categoryService;
+    private final CategotyService categotyService;
 
     @PostMapping("/create")
     public ResponseEntity<ServiceCategoryDto> createCategory(@Valid @ModelAttribute ServiceCategoryRequest serviceCategoryRequest){
-        return ResponseEntity.ok(categoryService.addCategory(serviceCategoryRequest));
+        return ResponseEntity.ok(categotyService.addCategory(serviceCategoryRequest));
     }
 
     @GetMapping
     public ResponseEntity<Page<ServiceCategoryDto>> findAll(@PageableDefault(size = 6, page = 0) Pageable pageable) {
-        return ResponseEntity.ok(categoryService.findAll(pageable));
+        return ResponseEntity.ok(categotyService.findAll(pageable));
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<?> deleteCategoryById(@PathVariable(name = "id") Long id){
-        categoryService.deleteCategoryById(id);
+        categotyService.deleteCategoryById(id);
         return ResponseEntity.ok("Category has been successfully deleted");
     }
 }

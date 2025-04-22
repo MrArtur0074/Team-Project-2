@@ -31,6 +31,7 @@ public class UserMapper {
                 .firstName(activation.getName())
                 .lastName(activation.getSurname())
                 .email(activation.getEmail())
+                .birthDate(activation.getBirthDate())
                 .password(activation.getPassword())
                 .roles(Set.of(roleRepository.findRoleByName("ROLE_USER")
                         .orElseThrow(() -> new NotFoundException("Role 'ROLE_USER' not found!"))))
@@ -50,7 +51,7 @@ public class UserMapper {
 
     public User toUserFromEdit(User user, UserEditRequest form, String avatarUrl) {
         user.setFirstName(form.getName());
-        user.setLastName(form.getLastName());
+        user.setLastName(form.getSurname());
         user.setBirthDate(form.getBirthDate());
         user.setAvatarUrl(avatarUrl);
         return user;
@@ -65,10 +66,6 @@ public class UserMapper {
                 .avatarUrl(user.getAvatarUrl())
                 .token(token)
                 .tokenType("Bearer")
-                .role(user.getRoles().stream()
-                        .findAny()
-                        .orElseThrow(() -> new NotFoundException("Role not found!"))
-                        .getName())
                 .build();
     }
 

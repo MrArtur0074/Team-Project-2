@@ -144,6 +144,7 @@ function Register({ setFormType }) {
       typeof lastName
     );
 
+    console.log(formData);
     register(formData);
   }
 
@@ -194,6 +195,7 @@ function Register({ setFormType }) {
           />
           <TextField
             id="date"
+            type="date"
             label="Введите дату рождения пример 2000.0l.20"
             variant="outlined"
             color="secondary"
