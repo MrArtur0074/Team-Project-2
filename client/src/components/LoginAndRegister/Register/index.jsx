@@ -42,60 +42,71 @@ const CssTextField = styled(TextField)({
 
 const bloodType = [
   {
-    value: "1",
+    value: 1,
     label: "О (I) Rh+",
   },
   {
-    value: "2",
+    value: 2,
     label: "A (I) Rh+",
   },
   {
-    value: "3",
+    value: 3,
     label: "B (I) Rh+",
   },
   {
-    value: "4",
+    value: 4,
     label: "AB (I) Rh+",
   },
 
   {
-    value: "5",
+    value: 5,
     label: "О (I) Rh-",
   },
   {
-    value: "6",
+    value: 6,
     label: "A (I) Rh-",
   },
   {
-    value: "7",
+    value: 7,
     label: "B (I) Rh-",
   },
   {
-    value: "8",
+    value: 8,
     label: "AB (I) Rh-",
   },
 ];
 
 const gender = [
   {
-    value: "0",
+    value: 1,
     label: "Мужчина",
   },
   {
-    value: "1",
+    value: 2,
     label: "Женщина",
   },
 ];
+
+
 function Register({ setFormType }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [blood, setBlood] = useState("");
+  const [blood, setBlood] = useState(0);
   const [lastName, setLastName] = useState("");
-  const [genderid, setGender] = useState("");
+  const [genderid, setGender] = useState(0);
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
-
+  const formFields = {
+    birthDate: selectedDate,
+    bloodTypeId: blood,
+    email,
+    gender_id: genderid,
+    name: username,
+    password,
+    surname: lastName,
+  };
+  
   const { register } = useAuth();
   useEffect(() => {
     console.log(blood);
@@ -103,48 +114,74 @@ function Register({ setFormType }) {
 
   // const navigate = useNavigate();
 
+  // function createUser() {
+  
+    
+  //   console.log(
+  //     selectedDate,
+  //     blood,
+  //     email,
+  //     genderid,
+  //     username,
+  //     password,
+  //     lastName,
+  //   );
+  //   if (
+  //     !email ||
+  //     !genderid ||
+  //     !password ||
+  //     !passwordConfirm ||
+  //     !username ||
+  //     !blood ||
+  //     !lastName ||
+  //     !selectedDate
+  //   ) {
+  //     alert("You have empty inputs!");
+  //     return;
+  //   }
+
+  //   // let formData = new FormData();
+  //   // formData.append("birthDate", selectedDate);
+  //   // formData.append("bloodTypeId", blood);
+  //   // formData.append("email", email);
+  //   // formData.append("gender_id", genderid);
+  //   // formData.append("name", username);
+  //   // formData.append("password", password);
+  //   // formData.append("surname", lastName);
+  //   let formData = new FormData();
+  //   const formObj = {};
+  //   formData.forEach((value, key) => {
+  //     formObj[key] = typeof value;
+  //   });
+  //   console.log(formObj); // This should show the correct types now
+  //   register(formData);
+  // }
   function createUser() {
-    if (
-      !email ||
-      !password ||
-      !passwordConfirm ||
-      !username ||
-      !blood ||
-      !lastName ||
-      !genderid ||
-      !selectedDate
-    ) {
-      alert("You have empty inputs!");
-      return;
-    }
-
-    let formData = new FormData();
-    formData.append("birthDate", selectedDate);
-    formData.append("bloodTypeId", blood);
-    formData.append("email", email);
-    formData.append("gender_id", genderid);
-    formData.append("name", username);
-    formData.append("password", password);
-    formData.append("surname", lastName);
-
-    console.log(
-      selectedDate,
-      blood,
+    // Convert gender_id and bloodTypeId to numbers before appending
+    const numericFormFields = {
+      birthDate: selectedDate,
+      bloodTypeId: Number(blood),  // Convert to number
       email,
-      genderid,
-      username,
+      gender_id: Number(genderid), // Convert to number
+      name: username,
       password,
-      lastName,
-      typeof selectedDate,
-      typeof blood,
-      typeof email,
-      typeof genderid,
-      typeof username,
-      typeof password,
-      typeof lastName
-    );
-
-    console.log(formData);
+      surname: lastName,
+    };
+  
+    let formData = new FormData();
+    for (const key in numericFormFields) {
+      if (numericFormFields[key] !== undefined && numericFormFields[key] !== null) {
+        formData.append(key, numericFormFields[key]);
+      }
+    }
+  
+    // Log the object version of formData to check
+    const formObj = {};
+    formData.forEach((value, key) => {
+      formObj[key] = value;
+    });
+    console.log(formObj); // This should show the correct types now
+  
     register(formData);
   }
 

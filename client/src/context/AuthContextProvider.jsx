@@ -16,7 +16,11 @@ const AuthContextProvider = ({ children }) => {
       const headers = {
         "Content-Type": "application/json", // Указываем, что отправляем JSON
       };
-  
+      const formObj = {};
+      formData.forEach((value, key) => {
+        formObj[key] = value;
+      });
+      console.log(formObj,'ada'); // This should show the correct types now
       let res = await axios.post(
         `${API}auth/register`,
         JSON.stringify(formData), // Отправляем как JSON
