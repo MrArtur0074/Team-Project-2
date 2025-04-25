@@ -5,28 +5,38 @@ import CssTextField from "../../UI/inputOurUI/FormField";
 import React, { useEffect, useState } from "react";
 import ModalHeading from "../ModalHeading";
 import TextField from "@mui/material/TextField";
-import Button  from "@mui/material/Button";
-import { Link, useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
+// import { Link, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../../context/AuthContextProvider";
-
 
 function Login({ setFormType }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const { login } = useAuth();
   useEffect(() => {
     console.log(username);
   }, [username]);
 
-  function loginUser() {
-    let formData = new FormData();
-    formData.append("username", username);
+  async function loginUser(username, password, navigate) {
+  
+    const formData = new FormData();
+    formData.append("email", username);
     formData.append("password", password);
-    login(formData, navigate, username);
+  
+    try {
+      // Отправляем данные для логина на сервер
+      await login(formData);  // Предполагается, что login уже существует
+  
+      // После успешного логина перенаправляем на главную страницу
+      navigate("/");
+    } catch (error) {
+      alert("Login failed: " + error.message);
+    }
   }
+  
 
   //! Validation
   function setFormRegister() {
@@ -78,27 +88,31 @@ function Login({ setFormType }) {
               <div className="flex justify-end mb-6">
                 <p
                   onClick={setFormResetPassword}
-                  className=" text-xs underline cursor-pointer text-[#8E949A] mb-2 w-24">
+                  className=" text-xs underline cursor-pointer text-[#8E949A] mb-2 w-24"
+                >
                   Забыли пароль?
                 </p>
               </div>
-              <Link to="/profile" className="w-full">
-                <Button
-                  type="submit"
-                  fullWidth
-                  color="secondary"
-                  variant="contained"
-                  size="large"
-                  onClick={loginUser}
-                  sx={{ textTransform: "capitalize", borderRadius: 2 }}>
-                  Войти
-                </Button>
-              </Link>
+              {/* <Link to="/profile" className="w-full"> */}
+              <Button
+                type="submit"
+                fullWidth
+                color="secondary"
+                variant="contained"
+                size="large"
+                onClick={loginUser}
+                sx={{ textTransform: "capitalize", borderRadius: 2 }}
+              >
+                Войти
+              </Button>
+              {/* </Link> */}
             </div>
             <div className="flex mx-auto flex-row justify-end text-xs cursor-default text-ourblue font-bold">
               Нет аккаунта?
-              <p onClick={setFormRegister}
-                className="text-ourred cursor-pointer">
+              <p
+                onClick={setFormRegister}
+                className="text-ourred cursor-pointer"
+              >
                 Зарегистрироваться
               </p>
             </div>

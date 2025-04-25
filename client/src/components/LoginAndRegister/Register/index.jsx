@@ -5,15 +5,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/system";
 import { MenuItem } from "@mui/material";
-// import { useNavigate } from "react-router";
-import {
-  Formik,
-
-  Form,
-
-} from "formik";
-
-
+import { Formik, Form } from "formik";
 
 // interface MyFormValues {
 //   login: string;
@@ -42,7 +34,7 @@ const CssTextField = styled(TextField)({
 
 const bloodType = [
   {
-    value: "1",
+    value: 1,
     label: "О (I) Rh+",
   },
   {
@@ -78,11 +70,11 @@ const bloodType = [
 
 const gender = [
   {
-    value: "0",
+    value: 1,
     label: "Мужчина",
   },
   {
-    value: "1",
+    value: 2,
     label: "Женщина",
   },
 ];
@@ -93,59 +85,42 @@ function Register({ setFormType }) {
   const [blood, setBlood] = useState("");
   const [lastName, setLastName] = useState("");
   const [genderid, setGender] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
+
+
 
   const { register } = useAuth();
   useEffect(() => {
     console.log(blood);
   }, [blood]);
 
-  // const navigate = useNavigate();
 
-  function createUser() {
-    if (
-      !email ||
-      !password ||
-      !passwordConfirm ||
-      !username ||
-      !blood ||
-      !lastName ||
-      !genderid ||
-      !selectedDate
-    ) {
-      alert("You have empty inputs!");
+  
+  async function createUser() {
+    if (!email || !password || !username || !blood || !lastName || !genderid || !selectedDate) {
+      alert("Please fill in all fields.");
       return;
     }
 
-    let formData = new FormData();
-    formData.append("birthDate", selectedDate);
-    formData.append("bloodTypeId", blood);
-    formData.append("email", email);
-    formData.append("gender_id", genderid);
-    formData.append("name", username);
-    formData.append("password", password);
-    formData.append("surname", lastName);
+    const data = {
+      birthDate: selectedDate,
+      bloodTypeId: blood,
+      email: email,
+      genderId: genderid,
+      name: username,
+      password: password,
+      surname: lastName,
+    };
 
-    console.log(
-      selectedDate,
-      blood,
-      email,
-      genderid,
-      username,
-      password,
-      lastName,
-      typeof selectedDate,
-      typeof blood,
-      typeof email,
-      typeof genderid,
-      typeof username,
-      typeof password,
-      typeof lastName
-    );
-
-    console.log(formData);
-    register(formData);
+    try {
+      // Отправляем данные для регистрации на сервер
+      await register(data);
+      
+      // После успешной регистрации перенаправляем на страницу для подтверждения
+      setFormType("login");
+    } catch (error) {
+      alert("Registration failed: " + error.message);
+    }
   }
 
   const initialValues = {
@@ -162,9 +137,9 @@ function Register({ setFormType }) {
       <ModalHeading>Регистрация</ModalHeading>
       <Formik
         // onSubmit={(values, actions) => {
-          // console.log({ values, actions });
-          // alert(JSON.stringify(values, null, 2));
-          // actions.setSubmitting(false);
+        // console.log({ values, actions });
+        // alert(JSON.stringify(values, null, 2));
+        // actions.setSubmitting(false);
         // }}
         initialValues={initialValues}
       >
@@ -248,15 +223,6 @@ function Register({ setFormType }) {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <TextField
-            id="password2"
-            label="Повторите пароль"
-            variant="outlined"
-            color="secondary"
-            size="small"
-            type="password"
-            onChange={(e) => setPasswordConfirm(e.target.value)}
-          />
 
           <Button
             type="submit"
@@ -267,7 +233,7 @@ function Register({ setFormType }) {
               borderRadius: 2,
               height: "50px",
             }}
-            onClick={createUser}
+            onClick={() => createUser()}
           >
             <p className="font-semibold text-base">Зарегистрироваться</p>
           </Button>

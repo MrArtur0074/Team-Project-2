@@ -29,7 +29,7 @@ public class UserEditRequest {
     @NotNull
     private Long bloodTypeId;
     @NotNull
-    private Integer phoneNumber;
+    private String phoneNumber;
     @NotNull
     private Long  regionId;
     @NotNull

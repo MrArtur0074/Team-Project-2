@@ -20,6 +20,6 @@ public class UserInfoDto {
     private UserDto userDto;
 
     private Integer amountOfDonations;
-    private Integer phoneNumber;
+    private String  phoneNumber;
     private RegionDto regionDto;
 }

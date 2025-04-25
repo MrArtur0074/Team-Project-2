@@ -30,7 +30,7 @@ public class UserInfo {
 
     @OneToOne
     private User user;
-    private Integer phoneNumber;
+    private String  phoneNumber;
     @ManyToOne
     private Region region;
     @Column(nullable = false)

@@ -3,12 +3,10 @@ package edu.jundev.donation.mapper;
 import edu.jundev.donation.dto.UserInfoDto;
 import edu.jundev.donation.dto.requests.UserEditRequest;
 import edu.jundev.donation.entity.User;
-import edu.jundev.donation.entity.UserActivation;
 import edu.jundev.donation.entity.UserInfo;
 import edu.jundev.donation.repository.BloodTypeRepository;
 import edu.jundev.donation.repository.GenderRepository;
 import edu.jundev.donation.repository.RegionRepository;
-import edu.jundev.donation.repository.UserInfoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -28,7 +26,7 @@ public class UserInfoMapper {
         return UserInfo.builder()
                 .user(savedUser)
                 .amountOfDonations(0)
-                .phoneNumber(996000000)
+                .phoneNumber("996000000")
                 .region(regionRepository.findById(9L).orElseThrow())
                 .points(0)
                 .status(statusMapper.initialStatus())

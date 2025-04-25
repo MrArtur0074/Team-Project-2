@@ -5,7 +5,6 @@ import edu.jundev.donation.dto.requests.UserEditRequest;
 import edu.jundev.donation.dto.response.ResponseJwt;
 import edu.jundev.donation.entity.PasswordReset;
 import edu.jundev.donation.entity.User;
-import edu.jundev.donation.entity.UserActivation;
 import edu.jundev.donation.exception.NotFoundException;
 import edu.jundev.donation.repository.BloodTypeRepository;
 import edu.jundev.donation.repository.GenderRepository;
@@ -14,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
-import java.util.Set;
 
 @Component
 @RequiredArgsConstructor
@@ -24,20 +22,6 @@ public class UserMapper {
     private final RoleRepository roleRepository;
     private final GenderMapper genderMapper;
     private final BloodTypeMapper bloodTypeMapper;
-
-
-    public User toEntity(UserActivation activation) {
-        return User.builder()
-                .firstName(activation.getName())
-                .lastName(activation.getSurname())
-                .email(activation.getEmail())
-                .birthDate(activation.getBirthDate())
-                .password(activation.getPassword())
-                .roles(Set.of(roleRepository.findRoleByName("ROLE_USER")
-                        .orElseThrow(() -> new NotFoundException("Role 'ROLE_USER' not found!"))))
-                .avatarUrl("anon.jpg")
-                .build();
-    }
 
     public UserDto toDto(User user) {
         return UserDto.builder()

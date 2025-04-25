@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -11,42 +11,91 @@ const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null); // Сохраняем пользователя
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // Попробуем загрузить пользователя из localStorage при загрузке приложения
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      // Если токен существует, можно попробовать загрузить информацию о пользователе
+      axios
+        .get(`${API}auth/me`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setUser(res.data);
+        })
+        .catch((err) => {
+          console.error("Ошибка при получении пользователя:", err);
+          localStorage.removeItem("authToken"); // Очистить токен, если запрос не удался
+        });
+    }
+  }, []);
+
   async function register(formData) {
+    console.log(formData);
     try {
       const headers = {
-        "Content-Type": "application/json", // Указываем, что отправляем JSON
+        "Content-Type": "application/json",
       };
-  
+
       let res = await axios.post(
         `${API}auth/register`,
-        JSON.stringify(formData), // Отправляем как JSON
+        formData, // no need to stringify formData
         { headers }
       );
-  
+
       console.log("Ответ сервера:", res.data);
-  
-      // Сохраняем JWT токен в localStorage или sessionStorage
-      const token = res.data.token; // Пример, если сервер возвращает токен
+
+      const token = res.data.token;
       localStorage.setItem("authToken", token);
-  
-      // Перенаправляем пользователя после регистрации
-      navigate("/auth");
+
+      // Загрузим пользователя после успешной регистрации
+      const userData = await axios.get(`${API}auth/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setUser(userData.data); // Обновляем состояние с пользователем
+      navigate("/"); // Перенаправляем на главную страницу после регистрации
     } catch (err) {
       console.error("Registration error:", err);
-      console.error("Ответ сервера:", err.response?.data); // Показываем ответ от сервера
+      console.error("Ответ сервера:", err.response?.data);
     }
   }
-  async function login(formData, username) {
+
+  async function login(formData) {
+    console.log(formData);
+    
     try {
-      let res = await axios.post(`${API}auth/login`, formData, {
-        headers: { "Content-Type": "application/json" },
+      const headers = {
+        "Content-Type": "application/json",
+      };
+
+      let res = await axios.post(
+        `${API}auth/login`,
+        formData, // no need to stringify formData
+        { headers }
+      );
+
+      console.log("Ответ сервера:", res.data);
+
+      const token = res.data.token;
+      localStorage.setItem("authToken", token);
+
+      // Загрузим пользователя после успешного логина
+      const userData = await axios.get(`${API}auth/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
-      localStorage.setItem("tokens", JSON.stringify(res.data));
-      localStorage.setItem("username", username); // JSON.stringify не нужен
-      setUser(username); // Обновляем пользователя в `useState`
-      navigate("/");
+
+      setUser(userData.data); // Обновляем состояние с пользователем
+      navigate("/"); // Перенаправляем на главную страницу после логина
     } catch (err) {
       console.error("Login error:", err);
+      console.error("Ответ сервера:", err.response?.data);
     }
   }
 

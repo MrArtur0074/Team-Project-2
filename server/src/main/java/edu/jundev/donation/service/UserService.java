@@ -1,7 +1,6 @@
 package edu.jundev.donation.service;
 
 import edu.jundev.donation.configuration.JwtUtils;
-import edu.jundev.donation.dto.UserDto;
 import edu.jundev.donation.dto.UserInfoDto;
 import edu.jundev.donation.dto.requests.ResetPasswordRequest;
 import edu.jundev.donation.dto.requests.UserEditRequest;
@@ -10,18 +9,15 @@ import edu.jundev.donation.dto.requests.RegisterRequest;
 import edu.jundev.donation.dto.response.ResponseJwt;
 import edu.jundev.donation.entity.PasswordReset;
 import edu.jundev.donation.entity.User;
-import edu.jundev.donation.entity.UserActivation;
 import edu.jundev.donation.entity.UserInfo;
 import edu.jundev.donation.exception.ActivationException;
 import edu.jundev.donation.exception.EmailExistsException;
 import edu.jundev.donation.exception.FileException;
 import edu.jundev.donation.exception.NotFoundException;
-import edu.jundev.donation.mapper.StatusMapper;
 import edu.jundev.donation.mapper.UserActivationMapper;
 import edu.jundev.donation.mapper.UserInfoMapper;
 import edu.jundev.donation.mapper.UserMapper;
 import edu.jundev.donation.repository.PasswordResetRepository;
-import edu.jundev.donation.repository.UserActivationRepository;
 import edu.jundev.donation.repository.UserInfoRepository;
 import edu.jundev.donation.repository.UserRepository;
 import edu.jundev.donation.utils.CloudStorage;
@@ -45,7 +41,6 @@ public class UserService {
     private final PasswordResetRepository passwordResetRepository;
     private final MailSenderService mailSenderService;
     private final UserMapper userMapper;
-    private final UserActivationMapper userActivationMapper;
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtils jwtUtils;
@@ -64,16 +59,20 @@ public class UserService {
         return userMapper.toJwt(user, jwt);
     }
 
-    public void registerUser(@Valid RegisterRequest registerRequest) throws NotFoundException, EmailExistsException {
+    public void registerUser(@Valid RegisterRequest registerRequest) throws EmailExistsException, NotFoundException {
         if (userRepository.existsByEmail(registerRequest.getEmail())) {
             throw new EmailExistsException("Error: Email is already in use!");
         }
+
         registerRequest.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
-        UserActivation activation = userActivationMapper.toEntity(registerRequest);
-        UserActivation saved = userActivationRepository.save(activation);
-        mailSenderService.sendMessage(saved.getEmail(), "Activate your account",
-                "Code to activate account - " + saved.getCode());
+
+        User user = userMapper.toEntity(registerRequest); // сразу создаём User
+        User savedUser = userRepository.save(user);
+
+        UserInfo userInfo = userInfoMapper.toUserInfoFromRegister(registerRequest, savedUser);
+        userInfoRepository.save(userInfo);
     }
+
 
     public void activateUser(String code, String email) throws ActivationException {
         UserActivation activation = userActivationRepository.findByCodeAndEmail(code, email)
